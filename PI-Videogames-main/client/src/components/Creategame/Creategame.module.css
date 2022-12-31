@@ -1,0 +1,95 @@
+
+.contain{
+    margin-top: 20px;
+
+    display:flex;
+    justify-content: center;
+}
+
+.form{
+    color: rgb(0, 0, 0);
+    width:700px;
+    height: 600px;
+ background-color: rgba(30, 18, 41, 0.692);
+    border-radius: 20px;
+    transition: all .3s;
+
+}
+
+.title{
+    color: rgb(233, 10, 203);
+    font-weight: 700;
+    font-style: italic;
+    text-decoration:underline
+}
+
+.nombres{
+
+    color: rgb(255, 77, 184);
+    width:fit-content;
+    display: block;
+    font-size: 18px;
+    font-weight: 700;
+    font-style: italic;
+    
+}
+.Textarea{
+    width: 250px;
+    height: 80px;
+    float: left;
+
+    background-color: aquamarine;
+}
+.inputs{
+    width: 250px;
+    height: 30px;
+    float: left;
+    border-radius: 50px;
+    background-color: aquamarine;
+}
+.errors{
+    font-style: italic;
+    font-weight: 500;
+    font-size: 17px;
+    color: rgb(255, 0, 0);
+    background-color: rgba(0, 0, 0, 0.747);
+}
+.selects{
+    display: block;
+    background-color: aquamarine;
+
+}
+.buttons{
+    float: left;
+    color: rgb(255, 0, 234);
+    border:none;
+    cursor: pointer;
+    border-radius: 12px;
+    font-style: italic;
+    background-color: rgb(15, 21, 53);
+    font-weight: bold;
+    border-style: groove;
+    border-color: rgb(63, 18, 65);
+}
+.button:hover{
+    opacity: 0.95;
+  }
+  .button:active{
+    transform: translate(6px);
+  }
+
+.submit{
+    float: left;
+    color: rgb(255, 0, 234);
+    border:none;
+    cursor: pointer;
+    border-radius: 12px;
+    font-style: italic;
+    background-color: rgb(15, 21, 53);
+    font-weight: bold;
+    border-style: groove;
+    border-color: rgb(63, 18, 65);
+    font-size: 24px;
+    margin-left: 2px;
+    margin-right: 5px;
+}

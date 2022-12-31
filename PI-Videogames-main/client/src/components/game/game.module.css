@@ -1,0 +1,50 @@
+.Game{
+    color: rgb(255, 255, 255); ;
+}
+.info{
+    background-color: rgb(37, 37, 80);
+  
+}
+
+
+#parr{
+    text-align:center;
+    width: 50%;
+    margin-left: 27%;
+    border-style: double;
+    border-color: black;
+   border-width: 8px;
+}
+#parr:hover{
+    zoom: 120%;
+}
+
+/* .button::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+       blue,rgb(112, 0, 60),blue,
+        blue,rgb(97, 0, 52),blue
+    );
+    background-size: 800%;
+    border-radius: 10px;
+    filter: blur(8px);
+    animation: glowing 20s linear infinite ;
+}
+ @keyframes glowing{
+    0%{
+        background-position: 0 0;
+    }
+    50%{
+        background-position:400% 0 ;
+    }
+    100%{
+        background-position:0 0 ;
+    }
+ } */

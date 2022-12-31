@@ -1,0 +1,81 @@
+.contain{
+     display:block;
+     height: 80px;
+     margin-top: 15px;
+}
+.Rating{
+  display: inline-block;
+  padding-top: 2px;
+  padding-bottom: 10px;
+ 
+  width: 25%
+}
+.Nameorder{
+ 
+  display: inline-block;
+  padding-top: 2px;
+  padding-bottom: 10px;
+
+  width: 25%
+}
+.Genres{
+
+  display: inline-block;
+  padding-top: 2px;
+  padding-bottom: 10px;
+
+  width: 25%
+}
+.buttonss{
+
+  bottom: 50pxs ;
+}
+
+
+.selects{
+    
+    border:1px solid;
+    cursor: pointer;
+    border-radius: 8px;
+    font-style: italic;
+    background-color: rgb(151, 214, 214);
+    margin-left:15px ;
+    
+}
+
+.selects:focus,
+.selects:hover{
+    outline: none;
+    border:3px solid #79005a;
+}
+
+.orden{
+    color: black;
+    font-weight: 500;
+    color: rgb(220, 45, 255);
+   
+}
+
+.buttons{
+    color: rgb(255, 0, 234);
+     display: inline-block;
+     
+     width: 200px;
+    border:none;
+    cursor: pointer;
+    border-radius: 12px;
+    font-style: italic;
+    background-color: rgb(15, 21, 53);
+    font-size: 17px;
+    position: relative;
+    font-weight: bold;
+    border-style: groove;
+    border-color: rgb(63, 18, 65);
+  }
+  .buttons:hover{
+    opacity: 0.95;
+    color: antiquewhite;
+  }
+  .buttons:active{
+    transform: translate(6px);
+  }

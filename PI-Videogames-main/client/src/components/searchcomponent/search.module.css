@@ -1,0 +1,13 @@
+.searchInput{
+    height: 35px;
+    border-radius: 50px;
+    background-color: rgb(185, 240, 253);
+    font-size: large;
+    font-style: italic;
+}
+
+.searchButton{
+    height: 35px;
+    background-color: aqua;
+    border-radius: 50px;
+}

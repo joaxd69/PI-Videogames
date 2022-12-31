@@ -1,0 +1,51 @@
+.landing{
+    background-color: rgb(0, 0, 0);
+    margin-top: 5%;;
+    height: 500px;
+    width:  500px;
+    margin: auto;
+    right: 50%;
+    max-height: max-content;
+    background-image: url('https://th.bing.com/th/id/R.e6fe4e5e38b1d6a4231fffa9d1a0f578?rik=B03VJ4nZIKivmQ&pid=ImgRaw&r=0');
+    background-size: contain;
+    border-radius: 80px;
+}
+.title{
+    color: rgb(247, 3, 206);
+    background-color: rgba(0, 0, 0, 0.76);
+
+    width: 100%;
+    box-sizing: border-box;    
+    border-top-right-radius:100px ;
+    border-top-left-radius:100px ;
+     padding-top: 37px;
+}
+
+.button{
+    color: rgb(255, 0, 234);
+    top: 9px;
+    border:none;
+    cursor: pointer;
+    border-radius: 12px;
+    font-style: italic;
+    background-color: rgb(15, 21, 53);
+    font-size: 24px;
+    position: relative;
+    font-weight: bold;
+    border-style: groove;
+    border-color: rgb(63, 18, 65);
+    top: 200px;
+  }
+  .button:hover{
+    opacity: 0.95;
+  }
+  .button:active{
+    transform: translate(6px);
+  }
+
+  .infotext{
+    color: rgb(255, 67, 224);
+    background-color: rgba(0, 0, 0, 0.87);
+    font-weight: 600;
+    font-style: italic;
+  }

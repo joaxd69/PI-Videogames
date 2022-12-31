@@ -1,0 +1,39 @@
+
+
+.cards{
+    background-color: rgba(0, 0, 0, 0.562);
+width: auto;
+margin-top: 10px;
+}
+.fix{
+    position: fixed;
+}
+.filters{
+    
+    display: block;
+    width: 100%;
+    float: left;
+}
+.searchbar{
+
+    display: inline-block;
+    margin-right: 50px;
+}
+.Paginate{
+    background-color: rgba(0, 0, 0, 0.521);
+}
+.paginatecontain{
+    
+    display: inline-block;
+    margin-top: 5px;
+
+}
+
+@media(max-width:767px){
+
+    .cards{
+        background-color: rgba(0, 0, 0, 0.562);
+    width: auto;
+    margin-top: 140px;
+    }
+}
