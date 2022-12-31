@@ -6,8 +6,6 @@ import Game from './components/game/Game';
 import Results from './components/search results/Results';
 import Nav from './components/Nav/Nav';
 import Creategame from './components/Creategame/Creategame';
-import Searchcomponent from './components/searchcomponent/Searchcomponent';
-import Errorpag from './components/Error page/Error';
 import Favourites from './components/Favourites/Favourites';
 
 function App() {
