@@ -1,19 +1,28 @@
-import { useEffect, useState } from 'react'
+import { useEffect,  useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import { getGenres, Postform } from '../../Redux/actions'
 import style from '../Creategame/Creategame.module.css'
 
-export default function Creategame(){
+export default function Creategame({estado,defaultname,putdispatch,id}){
     const dispatch = useDispatch()
     const history = useHistory()
 
     useEffect(()=>{
         dispatch(getGenres())
+        /* eslint-disable react-hooks/exhaustive-deps */
     },[dispatch])  
+ 
+    const[state,setState]=useState('Create')
+    const midir =useLocation().pathname
+    useEffect(()=>{
+        if(!midir.includes('creategame')){
+         setState('diferent page')
+        }
+    },[])
 
     const Genres= useSelector(state=>state.videogame_genres)
-
+   
     const [inputs,setInputs]=useState({
         name:'',
         released:'',
@@ -23,17 +32,22 @@ export default function Creategame(){
         genres:[],
         platforms:[]
     })
-    
-   const handleReset =()=>setInputs({
-    name:'',
-    released:'',
-    description:'',
-    image:'',
-    rating:'',
-    genres:[],
-    platforms:[]
-   })
- 
+
+    const [errors,setErrors]= useState({})
+
+    const validator =(input)=>{
+    const errors={}
+    if(input.name==='SELECT A GAME')errors.name='Please select game from Games created'
+    if (!input.name)errors.name = 'Complete el campo de nombres'
+    if (!input.released) errors.released='Ingrese una fecha'
+    if (!Date.parse(input.released)||input.released.length!==10 ||input.released.includes('/'))errors.released='Formato de fecha no valido'
+    if(!input.image) errors.image='Ingrese una url de imagen'
+    if(!input.image.includes('https://'&&'.com')) errors.image='Ingrese una url correcta'
+    if(isNaN(input.rating)||input.rating.includes(' ')) errors.rating='Only numbers'
+    if (!input.rating|| input.rating<0 ||input.rating>5 ) errors.rating='ingrese un numero de rating de 0 a 5'
+    if(!input.description) errors.description= 'ingrese una descripcion' 
+    return errors
+}
     const platforms = [
         "Linux",
         "PC",
@@ -55,70 +69,82 @@ export default function Creategame(){
         "Dreamcast",
         "Web",
     ] 
-
-    const [errors,setErrors]= useState({})
-
-    const validator =(input)=>{
-    const errors={}
-    if (!input.name)errors.name = 'Complete el campo de nombres'
-    if (!input.released) errors.released='Ingrese una fecha'
-    if (!Date.parse(input.released)||input.released.length!==10 ||input.released.includes('/'))errors.released='Formato de fecha no valido'
-    if(!input.image) errors.image='Ingrese una url de imagen'
-    if(!input.image.includes('https://'&&'.com')) errors.image='Ingrese una url correcta'
-    if(isNaN(input.rating)||input.rating.includes(' ')) errors.rating='Only numbers'
-    if (!input.rating|| input.rating<0 ||input.rating>5 ) errors.rating='ingrese un numero de rating de 0 a 5'
-    if(!input.description) errors.description= 'ingrese una descripcion' 
-    return errors
-}
+  
+   const handleReset =()=>setInputs({
+    name:'',
+    released:'',
+    description:'',
+    image:'',
+    rating:'',
+    genres:[],
+    platforms:[]
+   })
+    
+    
     const handleChange=(e)=>setInputs({
-             ...inputs,
-            [e.target.name]:e.target.value
-        },
-       console.log(inputs),
-
-       setErrors(validator({
+     ...inputs,
+     [e.target.name]:e.target.value
+    },
+    // console.log(inputs),
+    setErrors(validator({
+     ...inputs,
+     [e.target.name]:e.target.value
+    }))
+    )
+        
+    const handleOptionsGenres = (e)=>setInputs({
+        ...inputs,
+        genres:[...inputs.genres,e.target.value]
+    },
+    setErrors(validator({
         ...inputs,
         [e.target.name]:e.target.value
-       }))
+        })),
     )
-
-    const handleOptionsGeners = (e)=>setInputs({
-            ...inputs,
-            genres:[...inputs.genres,e.target.value]
-        },
-        setErrors(validator({
-            ...inputs,
-            [e.target.name]:e.target.value
-           })),
-        )
     
     const handleOptionsPlatforms= (e)=>setInputs({
         ...inputs,
         platforms:[...inputs.platforms,e.target.value]
         })
-  
-    const handleSubmit = (e)=>{
-
-        e.preventDefault();
-        if(!inputs.name || !inputs.genres.length ||!inputs.platforms.length ||!inputs.image) return alert('Revisa los campos obligatorios');
-        else return dispatch(Postform(inputs))
-    }
-    const handleGenerPlatformreset=(e)=>setInputs({...inputs,[e.target.name]:[]})
-
    
+    const handleSubmit = (e)=>{
+        e.preventDefault();
+        if(!inputs.name || !inputs.genres.length ||!inputs.platforms.length ||!inputs.image) 
+          return alert('Revisa los campos obligatorios');
+
+        if(Object.entries(errors).length)return alert('Revisa los errores')
+        
+        if (state==='Create'){
+        dispatch(Postform(inputs)); history.push('/home')
+        
+        }else if(state==='diferent page'){
+         dispatch(putdispatch(id,inputs))
+         alert('games edited')
+        }  
+    }
+
+    const handleGenerPlatformreset=(e)=>setInputs({...inputs,[e.target.name]:[]})
+  
     return(
         <div className={style.contain}>
-          <form action="" onSubmit={(e)=>{console.log('hola');e.preventDefault()}} className={style.form}>
-             
+        
+          <form action="" onSubmit={(e)=>{e.preventDefault()}} className={style.form}>   
               <h2 className={style.title}> Create videogame:</h2>
                
               <label className={style.nombres}>* Name:</label>
                {errors.name&&<span className={style.errors}>{errors.name}</span>}
-              <input className={style.inputs} name='name' type="text" value={inputs.name} onChange={handleChange} /> 
+
+               {state==='Create'?
+               <input className={style.inputs} name='name'  type="text" value={inputs.name} onChange={handleChange} />:  
+               <input className={style.inputs} name='name'  type="text" value={inputs.name} placeholder='press click here before complete all'
+                onClick={()=>inputs.name=defaultname}/>
+               }
+             
 
               <label className={style.nombres}>* Released:</label>
                {errors.released&&<span className={style.errors}>{errors.released}</span>} 
-              <input placeholder='ex:01-06-1999' className={style.inputs} name='released' type="text" value={inputs.released} onChange={handleChange}/>
+              <input placeholder='year-month-day, ex:2005-12-30' className={style.inputs} name='released' type="text"
+               value={inputs.released} onChange={handleChange}/>
 
               <label className={style.nombres}>Description:</label>
               {errors.description&&<span className={style.errors}>{errors.description}</span>} 
@@ -134,7 +160,7 @@ export default function Creategame(){
               <input className={style.inputs} name='rating'  value={inputs.rating} onChange={handleChange} /> 
 
               <label  className={style.nombres}>*Genres:</label>
-              <select className={style.selects} name='genres' onChange={handleOptionsGeners}>
+              <select className={style.selects} name='genres' onChange={handleOptionsGenres}>
                 {Genres.length?Genres.map((i,key)=>
                 <option key={key} value={i}>{i}</option>
                 ):<></>}
@@ -154,9 +180,15 @@ export default function Creategame(){
               <button className={style.buttons} type='button' name='platforms' onClick={handleGenerPlatformreset}>Delete platforms</button>
               <span className={style.spans}>{inputs.platforms.join()}</span><br />
               <button onClick={handleReset} className={style.submit}>Reset</button>
-              <input type="submit" className={style.submit} onClick={handleSubmit} value='Create videogame'/>
+
+              {state==='Create'?
+               <input type="submit" className={style.submit} onClick={handleSubmit} value='Create videogame'/>:
+               <input type="submit" className={style.submit} onClick={handleSubmit} value='Edit game'/>
+              }
+              
 
           </form>
+          
         </div>
     )
 }

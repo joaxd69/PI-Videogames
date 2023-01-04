@@ -7,14 +7,16 @@ const { getDbAndApi,
 getVideoGameId,
 getVideoGamessameName,
 getVideoGamesGenre,
+DeleteGamesCreated,
+EditGamesCreated,
 }= require('./Controllers/Controllers')
 
 /// obtener todos los juegos
   server.get ("/videogames",async (req, res) => {
-    const name = req.query.name;///   /videogames/?search=query
+    const name = req.query.name;///videogames/?name=query
    
     // si no viene nada por query
-    if (!name) {//osea  en la url si no recibo un nombre
+    if (!name) {//osea  en la url si no recibo un nombre 
       try {
         const videogames = await getDbAndApi(); //guardo lo que tengo en api y db y lo devuelvo
        
@@ -45,7 +47,7 @@ getVideoGamesGenre,
                                      ///***recordar chequear si la base de datos devuelve algo */
         const videogames = [...videogameDb, ...videogamesApi.splice(0,15)];///unimos todo para devolver todo junto
        
-        videogames.length?res.json(videogames):res.status(404).json({ERROR:'No hay coincidencias con ese nombre'})
+        videogames.length?res.json(videogames):res.status(404).json({ERROR:'Server say :No hay coincidencias con ese nombre'})
       } catch (error) {
         res.status(404).json(error);
       }
@@ -61,7 +63,7 @@ getVideoGamesGenre,
     if (id.length < 10 ) {
       try {
         const videogameApi = await getVideoGameId(id);
-       console.log(typeof (parseInt  (req.params.id)))
+ 
         const infoApi = {
           image: videogameApi.background_image,
           name: videogameApi.name,
@@ -83,7 +85,7 @@ getVideoGamesGenre,
       try {
         const videogameDb = await Videogame.findByPk(id, {
           include: Genres,
-        });                         //////revisar este codigo cuando agreguemos datos a la base
+        });                         
          
         res.json(videogameDb);
       } catch (error) {
@@ -94,9 +96,8 @@ getVideoGamesGenre,
   })
   
   server.post("/videogames",async (req, res) => {
-    const { name, description, released, rating, platforms, image, genres }=req.body;
-      
-     console.log(name,description,released,rating,platforms,image,genres)
+    const { name, description, released, rating, platforms, image, genres }=req.body;  
+    //  console.log(name,description,released,rating,platforms,image,genres)
     if (!name || !description || !platforms)
       throw new Error({ msg: "complete required fields" });
  
@@ -117,11 +118,11 @@ getVideoGamesGenre,
   
       videogame.addGenre(genreDb);
 
-      res.json({ msg: "VideoGame created successfully" });
+      res.json({ msg: "Server say :VideoGame created successfully" });
     } catch (error) {
       res.status(404).json({error:'Error, no se pudo realizar la solicitud'});
     }
-  })
+  }) 
 /////...............................................................................................................
   server.get("/genres",async (req, res) => {
     try {
@@ -132,6 +133,35 @@ getVideoGamesGenre,
       res.status(404).json(error);
     }
   })
+//////...............................................................................
+server.delete('/videogames/:id',(req,res)=>{
+  try {
+    
+   const {id} = req.params;
+   DeleteGamesCreated(id)
+   res.status(200).json({state:' Server say : The game was deleted succesfully.'})
+  } catch (error) {
+    res.status(404).json({error:'Delete game failed'})
+  }
+})
+
+///...............................................
+server.put('/videogames/:id',async(req,res)=>{
+  try {
+   const {id}=req.params
+  
+   const { name, description, released, rating, platforms, image, genres }=req.body;
+   await EditGamesCreated(id,{name,description,released,rating,platforms,image,genres})
+   res.status(200).json({state:' Server say : The game was uploaded succesfully.'})
+  
+
+  } catch (error) {
+    res.status(404).json({error:'server say: Failed update game'})
+  }
+  
+  
+ 
+})
 
 
    

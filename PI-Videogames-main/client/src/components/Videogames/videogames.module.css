@@ -2,18 +2,24 @@
 
     display:inline-block;
     width: 30%;
-
+   
      
 }
 
 
 .title{
-    color: rgb(255, 0, 221);
+    color: rgb(255, 0, 0);
 
     width: 70%;
     margin: 0 auto;
     padding-bottom: 10px;
    
+}
+.title:hover{
+    background-color: rgba(0, 0, 0, 0.705);
+    color: rgb(255, 25, 224);
+    border-style: double;
+    border-color: rgb(180, 0, 156);
 }
 .plat{
     background-color: black;

@@ -3,6 +3,7 @@ export const GET_VIDEOGAMES = "GET_VIDEOGAMES";
 export const GET_GAMESBYID= "GET_GAMESBYID";
 export const GET_VIDEOGAMES_ORDENED = "GET_VIDEOGAMES_ORDENED";
 export const GET_GAMES_BY_NAME= 'GET_GAMES_BY_NAME'
+export const LOCAL_SEARCH='LOCAL_SEARCH'
 export const GET_GENRES='GET_GENRES'
 export const CREATED_GAMES=`CREATED_GAMES`
 export const GET_GAMES_CREATED='GET_GAMES_CREATED'
@@ -10,6 +11,8 @@ export const GET_GAMES_BY_GENRES='GET_GAMES_BY_GENRES'
 export const GET_FAVOURITES= 'GET_FAVOURITES'
 export const DELETE_FAVOURITES='DELETE_FAVOURITES' 
 export const CLEAR_AN_STATE='CLEAR_AN_STATE'
+export const DELETE_GAME_CREATED='DELETE_GAME_CREATED'
+export const UPDATE_GAME = 'UPDATE_GAME'
 ////para las actions primero declaramos las constantes que indican la accion a realizar , luego procedemos a realizar las 
 //funciones que realicen las acciones
 ///en estas funciones es donde conectamos el backend/servidor con nuestro front end
@@ -37,9 +40,14 @@ export const getgamesordened= (value)=>{
   return {
        type : GET_VIDEOGAMES_ORDENED,
        payload: value
-  }
+  } 
 }
-
+export const localsearch =(name)=>{
+    return{
+      type:LOCAL_SEARCH,
+      payload:name
+    }
+}
 export const getgamesbyname=(name)=>{
   return async (dispatch)=>{
     try {
@@ -71,6 +79,7 @@ export const getGenres= ()=>{
 export const Postform=(game)=>{
   return async(dispatch)=>{
     const url = await axios.post(`http://localhost:3001/videogames`,game)
+    alert(`Server says:${url.data.msg}` )
     return dispatch({
       type:CREATED_GAMES,
     })
@@ -99,7 +108,7 @@ export const getfavourites=(game)=>{
   }
 }
 
-export const deltefavourites=(game)=>{
+export const deleteFavourites=(game)=>{
   return{
     type:DELETE_FAVOURITES,
     payload:game
@@ -110,5 +119,25 @@ export const clearanstate=(state)=>{
   return{
     type:CLEAR_AN_STATE,
     payload:state
+  }
+}
+export const DeleteGamesCreated=(id)=>{
+   return async (dispatch)=>{
+    const deletegame = await axios.delete(`http://localhost:3001/videogames/${id}`)
+    alert(deletegame.data.state)
+    return dispatch({
+      type:DELETE_GAME_CREATED,
+      payload:id
+    })
+   }
+}
+export const EditGame=(id,game)=>{
+  return async(dispatch)=>{
+    const urlput= await axios.put(`http://localhost:3001/videogames/${id}`,game)
+    console.log(urlput.headers)
+    return dispatch({
+      type:UPDATE_GAME,
+      payload:{id,game}
+    })
   }
 }

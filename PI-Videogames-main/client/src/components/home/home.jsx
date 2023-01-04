@@ -1,20 +1,20 @@
 import { useState,useEffect } from "react";
 import{useDispatch,useSelector} from 'react-redux'
-import { getgamesbygenres, getgamescreated, getgamesordened, getvideogames } from "../../Redux/actions";
+import { getgamesbygenres, getgamescreated, getgamesordened, getvideogames }from "../../Redux/actions";
 import Videogames from "../Videogames/Videogames";
 import Paginado from "../paginado/Paginado";
 import style from '../home/home.module.css'
 import SortFilters from "../Sort filters/SortFIlters";
 import Loader from "../loader/loader";
 import Searchcomponent from "../searchcomponent/Searchcomponent";
-import store from "../../Redux/store";
 export default function Home (){
 
   const dispatch =useDispatch()///para despachar acciones 
-
+  
     useEffect(()=>{                                
-        dispatch(getvideogames())                 
-    },[dispatch])
+        dispatch(getvideogames())     
+        /* eslint-disable react-hooks/exhaustive-deps */          
+    },[])
     const allvideogames= useSelector(state=>state.videogames) 
     const [actualPage,setActualpage]= useState(1)
     const [gamesxpag,setgamesxpage]=useState(15)
@@ -32,6 +32,13 @@ export default function Home (){
     const prev=()=> actualPage>1? setActualpage(actualPage-1):'';
     const next=(e)=> actualPage<e.target.value?setActualpage(actualPage+ 1):alert('No more page')
     
+    const setGamesperpage=(e)=>setgamesxpage(e.target.value)
+    const [visibility,setVisibility]=useState(true)
+    useEffect(()=>{
+      setTimeout(()=>{
+        setVisibility(false)
+      },15000)
+    },[])
   return (
         <div className={style.Home}>  
              <div className={style.Paginate}>
@@ -50,7 +57,8 @@ export default function Home (){
                 />
               </section>
              
-             </div>
+              </div>
+            
                 
              <div className={style.filters}>
                 <SortFilters 
@@ -65,9 +73,15 @@ export default function Home (){
                   rating='rating'
                   handlefiltebygenres={handlefiltebygenres}
                 />
-             
               </div>
-                
+              <div className={style.bottomsspancontains}>
+              <span className={style.spantext}>Games per page:</span>
+             <button onClick={setGamesperpage} className={style.buttons} value={15}>default</button>
+             <button onClick={setGamesperpage} className={style.buttons} value={5} >5</button>
+             <button onClick={setGamesperpage} className={style.buttons} value={10}>10</button>
+             <button onClick={setGamesperpage} className={style.buttons} value={20}>20</button>
+             <button onClick={setGamesperpage} className={style.buttons} value={25}>25</button>
+             </div>  
             <div className={style.cards}>
                 {juegosactuales.length?juegosactuales.map((i,index)=>
                 <Videogames
@@ -79,7 +93,7 @@ export default function Home (){
                 genres={i.id.toString().length<8?i.genres.join():i.genres.map(i=>i.name).join()}
                 />
                 )
-                : <Loader/>
+                : visibility?<Loader/>:<h1>No games, you can create about this</h1>
                 } {/* inicialmente nuestra condicion dara false ya que en allvidegame
                                                                 no hay nada entonces mostrar un boton que hace el dispatch y muestra los resultados */}
            

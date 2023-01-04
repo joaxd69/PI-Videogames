@@ -1,0 +1,39 @@
+.Cardsconteiner{
+    display: block;
+    background-color: rgba(24, 0, 23, 0.856);
+    width: max-content;
+    border-style:dashed;
+    border-color: rgb(150, 47, 0);
+    border-radius: 15px;
+}
+.Favouritecard{
+ 
+    display: inline-block;
+    width: 270px;
+    border-radius: 30px;
+    margin-left: 8px;
+    padding-bottom: 3px
+}
+.text{
+    color: rgb(255, 34, 244);
+    background-color: black;
+}
+
+.button{
+    color: rgb(255, 0, 234);
+   
+     border:none;
+     cursor: pointer;
+     border-radius: 12px;
+     font-style: italic;
+     background-color: rgb(15, 21, 53);
+     font-size: 17px;
+     position: relative;
+     font-weight: bold;
+     border-style: groove;
+     border-color: rgb(63, 18, 65);
+   }
+   .delete{
+    background-color: rgb(230, 38, 38);
+    font-weight: 700;
+   }

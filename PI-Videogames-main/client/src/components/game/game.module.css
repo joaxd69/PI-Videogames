@@ -1,12 +1,11 @@
 .Game{
     color: rgb(255, 255, 255); ;
+    background-color: rgba(0, 0, 0, 0.658);
 }
 .info{
     background-color: rgb(37, 37, 80);
   
 }
-
-
 #parr{
     text-align:center;
     width: 50%;
@@ -18,33 +17,17 @@
 #parr:hover{
     zoom: 120%;
 }
+.button{
+ color: rgb(255, 0, 234);
 
-/* .button::before{
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        45deg,
-       blue,rgb(112, 0, 60),blue,
-        blue,rgb(97, 0, 52),blue
-    );
-    background-size: 800%;
-    border-radius: 10px;
-    filter: blur(8px);
-    animation: glowing 20s linear infinite ;
+  border:none;
+  cursor: pointer;
+  border-radius: 12px;
+  font-style: italic;
+  background-color: rgb(15, 21, 53);
+  font-size: 24px;
+  position: relative;
+  font-weight: bold;
+  border-style: groove;
+  border-color: rgb(63, 18, 65);
 }
- @keyframes glowing{
-    0%{
-        background-position: 0 0;
-    }
-    50%{
-        background-position:400% 0 ;
-    }
-    100%{
-        background-position:0 0 ;
-    }
- } */

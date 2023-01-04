@@ -1,5 +1,4 @@
 import style from '../paginado/paginado.module.css'
-import Searchcomponent from '../searchcomponent/Searchcomponent'
                                      //100        15
 export default function Paginado ({allVideogame,gamesxpag,paginado,prev,next,currentpage}){
 

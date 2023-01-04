@@ -50,13 +50,12 @@ const getplatform = async ()=>{
   .concat(Pag4.data.results)
   .concat(Pag5.data.results)
  const plataformas= await Paginas.map(i=>i.platforms.map(p=>p.platform.name)).join().split(',')
- return plataformas.filter((item,index)=>plataformas.indexOf(item)===index)
+ return plataformas.filter((item,index)=>plataformas.indexOf(item)===index)///revisar
 }
 
 
 const getVideoGamessameName = async (name) => {
     const datanameApi = await axios(  `https://api.rawg.io/api/games?search=${name}&&key=${APY_KEY}`);
-   
     const GameInfo = datanameApi.data.results.map((game) => {
       return {
         id: game.id,
@@ -90,17 +89,29 @@ const getVideoGamesGenre = async () => {////llamada a la api por genero
     );
     
     const generos = await videogames.data.results.map((genre) => genre.name);
-    // const genero= await Genres.findAll()
-    // const names = await genero.length?genero.map(i=>i.name):[]
+    const genero= await Genres.findAll()
+    const names = await genero.length?genero.map(i=>i.name):[]
    
     await generos.map((genre) => {
       Genres.findOrCreate({
         where: { name: genre },
       });
     });
-   
-    return generos;
+  //  console.log(genero) //compruebo que mi base de datos contenga los generos 
+  return names
   }
+
+const DeleteGamesCreated=async(id)=>{
+  Videogame.destroy({
+    where:{id:id}
+  })
+}
+
+const EditGamesCreated= async(id,data)=>{
+await  Videogame.update(data,{
+    where:{id:id}
+  })
+}
 
   
 
@@ -141,7 +152,9 @@ module.exports={
     getVideoGameId,///
     getVideoGamessameName,///
     getVideoGamesGenre,///
-    getplatform
+    getplatform,
+    DeleteGamesCreated,
+    EditGamesCreated
 
 }
 

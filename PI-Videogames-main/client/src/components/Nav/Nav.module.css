@@ -46,6 +46,7 @@ top:-10px;
   .button{
     display: inline-block;
     position: relative;
+    font-size: 19px;
   }
   .hometitle{
     margin-top: 2px;

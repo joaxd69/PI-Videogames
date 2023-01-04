@@ -26,7 +26,7 @@ export default function Results() {
        name={i.name}
        image={i.image}
        id={i.id}
-       platforms={i.platforms.join()}/>
+       genres={i.id.toString().length<8?i.genres.join():i.genres.map(i=>i.name).join()}/>
        ):games.ERROR?<h1>Server say {games.ERROR}</h1>:<Loader/>}
      
        <button onClick={()=>console.log(games)}> ver estado</button>
