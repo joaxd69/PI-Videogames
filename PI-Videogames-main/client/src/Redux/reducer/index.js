@@ -17,12 +17,14 @@ favourites:[]
 export default function reducer(state=initialState,action){//funcion reducer toma el estado inicial,anterior,y las acciones y devuelve un nuevo estado
 switch (action.type) {
  case GET_VIDEOGAMES:
-
+     action.payload.slice(0,-100).map(i=>i.genres=i.genres.map(a=>a.name))
+      const games_created= action.payload.slice(0,-100)
+      
   return{
      ...state,
      videogames:action.payload,
      all_videogames:action.payload,
-     games_created:action.payload.slice(0,-100)//el paginado trae los 100 primeros juegos de la api luego despues de 100 son los creados
+     games_created:games_created//el paginado trae los 100 primeros juegos de la api luego despues de 100 son los creados
      
   }
   case GET_GAMESBYID :

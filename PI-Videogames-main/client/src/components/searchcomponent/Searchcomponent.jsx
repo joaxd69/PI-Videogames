@@ -10,7 +10,8 @@ export default function Searchcomponent(){
        const [state,setState]=useState('')///auxiliar para que solo me aparezcan sugerencias de busqueda despues de 2 digitos
     
       const handlechange=(e)=>!names?alert( 'Ingrese un titulo de juego'):dispatch(getgamesbyname(names))
-      const cambio=(e)=>{dispatch(localsearch(e.target.value));setNames(e.target.value);e.target.value.length===2?setState('games'):setState('')}
+      const cambio=(e)=>{dispatch(localsearch(e.target.value));setNames(e.target.value);e.target.value.length>1?
+        setState('games'):setState('')}
       const sugerencias=useSelector(state=>state.videogames)
     
       return(

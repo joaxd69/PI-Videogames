@@ -63,30 +63,17 @@ EditGamesCreated,
     if (id.length < 10 ) {
       try {
         const videogameApi = await getVideoGameId(id);
- 
-        const infoApi = {
-          image: videogameApi.background_image,
-          name: videogameApi.name,
-          description: videogameApi.description_raw,
-          released: videogameApi.released,
-          rating: videogameApi.rating,
-          platforms: videogameApi.parent_platforms.map((e) => e.platform.name),
-          genres: videogameApi.genres.map((e) => e.name),
-        };
-
-        res.json(infoApi);
+        res.json(videogameApi);
       } catch (error) {
         res.status(404).json(error);
       }
     }
-
     // sino, pertenece a la db
     else {
       try {
         const videogameDb = await Videogame.findByPk(id, {
           include: Genres,
         });                         
-         
         res.json(videogameDb);
       } catch (error) {
         res.status(404).json(error);

@@ -10,11 +10,11 @@ export default function Creategame({estado,defaultname,putdispatch,id}){
 
     useEffect(()=>{
         dispatch(getGenres())
-        /* eslint-disable react-hooks/exhaustive-deps */
+        /* eslint-disable react-hooks/exhaustive-deps */ 
     },[dispatch])  
  
     const[state,setState]=useState('Create')
-    const midir =useLocation().pathname
+    const midir =useLocation().pathname/// En base a la pagina que este cambiara de formulario
     useEffect(()=>{
         if(!midir.includes('creategame')){
          setState('diferent page')
@@ -127,7 +127,7 @@ export default function Creategame({estado,defaultname,putdispatch,id}){
   
     return(
         <div className={style.contain}>
-        
+          
           <form action="" onSubmit={(e)=>{e.preventDefault()}} className={style.form}>   
               <h2 className={style.title}> Create videogame:</h2>
                
@@ -154,7 +154,7 @@ export default function Creategame({estado,defaultname,putdispatch,id}){
               <label className={style.nombres}>Image:</label>
               {errors.image&&<span className={style.errors}>{errors.image}</span>}
               <input className={style.inputs} name='image' type="text" value={inputs.image} onChange={handleChange}/> 
-
+              {inputs.image&&<img src={inputs.image} alt="not found" width='50' height='50'/>}
               <label className={style.nombres}>*Rating:</label>
               {errors.rating&&<span className={style.errors}>{errors.rating}</span>}
               <input className={style.inputs} name='rating'  value={inputs.rating} onChange={handleChange} /> 

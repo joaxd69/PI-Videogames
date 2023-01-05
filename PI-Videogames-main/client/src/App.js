@@ -9,7 +9,8 @@ import Creategame from './components/Creategame/Creategame';
 import Favourites from './components/Favourites/Favourites';
 import GamesCreated from './components/GamesCreated/GamesCreated';
 import EditGame from './components/EditGame/EditGame'
-
+import axios from 'axios'
+axios.defaults.baseURL ='http://localhost:3001/';
 function App() {
   return (
   <BrowserRouter>

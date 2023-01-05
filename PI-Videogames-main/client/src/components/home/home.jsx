@@ -90,7 +90,7 @@ export default function Home (){
                 image={i.image}
                 id={i.id}
                 platforms={i.platforms.join()}
-                genres={i.id.toString().length<8?i.genres.join():i.genres.map(i=>i.name).join()}
+                genres={i.genres.join()}
                 />
                 )
                 : visibility?<Loader/>:<h1>No games, you can create about this</h1>

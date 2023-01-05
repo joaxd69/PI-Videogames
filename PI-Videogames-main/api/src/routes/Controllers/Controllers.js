@@ -6,52 +6,52 @@ const {
 } = process.env;
 
 const videogamesloader= async ()=>{
-   const Pag1 = await axios.get(`https://api.rawg.io/api/games?key=${APY_KEY}`)////hacemos la peticion a la api, que nos devuelve 20 juegos
-   const Pag2 =await axios(Pag1.data.next)///en el llamado nos devuelve una propiedad next la cual posee la pagina siguiente con otros 20 juegos,entonces hacemos otra peticion  a es enlace 
-   const Pag3 = await axios(Pag2.data.next)//cada llamado viene con una propiedad next con el enlace a la siguien pagina asi que la llamamaos  hasta recibir 5 mientras la guardamos en constantes
+   const Pag1 = await axios.get(`https://api.rawg.io/api/games?key=${APY_KEY}`)
+   const Pag2 =await axios(Pag1.data.next)
+   const Pag3 = await axios(Pag2.data.next)
    const Pag4 = await axios (Pag3.data.next)
    const Pag5 =await axios(Pag4.data.next)
 
-   const Paginas =Pag1.data.results///aqui es donde unimos la informacion recibida, concatenamos todo en un solo array las peticiones que guardamos
-   .concat(Pag2.data.results)// en las constantes anteriores
+   const Paginas =Pag1.data.results
+   .concat(Pag2.data.results)
    .concat(Pag3.data.results)
    .concat(Pag4.data.results)
-   .concat(Pag5.data.results) ///como resultado obtenemos en Paginas un total de 100 juegos
+   .concat(Pag5.data.results) 
 
-   const DataApi = await Paginas.map(games=>{///aqui es donde recorremos toda la informacion recibida y de cada juegos nos traemos
-    return{                                    //las propiedades que nos importan
+   const DataApi = await Paginas.map(games=>{
+    return{                                  
         id:games.id, 
         name:games.name,
         image:games.background_image,
         rating:games.rating,
         date:games.released,
-        platforms:games.platforms.map(i=>i.platform.name),//debido a que las plataformas son muchos objetos nos quedamos solo con los nombres
+        platforms:games.platforms.map(i=>i.platform.name),
         genres: games.genres.map(i=>i.name)
       }
    }) 
 
-   return DataApi///finalmente retornamos todo lo que obtuvimos
+   return DataApi
 
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// 
 
-const getplatform = async ()=>{
-  const Pag1 = await axios.get(`https://api.rawg.io/api/games?key=${APY_KEY}`)
-  const Pag2 =await axios(Pag1.data.next)
-  const Pag3 = await axios(Pag2.data.next)
-  const Pag4 = await axios (Pag3.data.next)
-  const Pag5 =await axios(Pag4.data.next)
-  const Paginas =Pag1.data.results
-  .concat(Pag2.data.results)
-  .concat(Pag3.data.results)
-  .concat(Pag4.data.results)
-  .concat(Pag5.data.results)
- const plataformas= await Paginas.map(i=>i.platforms.map(p=>p.platform.name)).join().split(',')
- return plataformas.filter((item,index)=>plataformas.indexOf(item)===index)///revisar
-}
+
+// const getplatform = async ()=>{
+//   const Pag1 = await axios.get(`https://api.rawg.io/api/games?key=${APY_KEY}`)
+//   const Pag2 =await axios(Pag1.data.next)
+//   const Pag3 = await axios(Pag2.data.next)
+//   const Pag4 = await axios (Pag3.data.next)
+//   const Pag5 =await axios(Pag4.data.next)
+//   const Paginas =Pag1.data.results
+//   .concat(Pag2.data.results)
+//   .concat(Pag3.data.results)
+//   .concat(Pag4.data.results)
+//   .concat(Pag5.data.results)
+//  const plataformas= await Paginas.map(i=>i.platforms.map(p=>p.platform.name)).join().split(',')
+//  return plataformas.filter((item,index)=>plataformas.indexOf(item)===index)
+// }
 
 
 const getVideoGamessameName = async (name) => {
@@ -75,10 +75,18 @@ const getVideoGamessameName = async (name) => {
 const getVideoGameId = async (id) => {
     const videogameId = await axios(
       `https://api.rawg.io/api/games/${id}?key=${APY_KEY}`
-    )////obtendremos datos sobre el juego que posea dicho id 
-  ////retornamos sus
-     
-  return videogameId.data
+    )
+    const infoApi = {
+      image: videogameId.data.background_image,
+      name: videogameId.data.name,
+      description: videogameId.data.description_raw,
+      released: videogameId.data.released,
+      rating: videogameId.data.rating,
+      platforms: videogameId.data.parent_platforms.map((e) => e.platform.name),
+      genres: videogameId.data.genres.map((e) => e.name),
+    };
+    // console.log(infoApi)
+  return infoApi
   }
 
 
@@ -152,7 +160,7 @@ module.exports={
     getVideoGameId,///
     getVideoGamessameName,///
     getVideoGamesGenre,///
-    getplatform,
+    // getplatform,
     DeleteGamesCreated,
     EditGamesCreated
 

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import style from'../Videogames/videogames.module.css'
-export default function Videogames({name,image,platforms,id,genres}){
+export default function Videogames({name,image,id,genres}){
 
    
     return(
