@@ -33,9 +33,6 @@ export default function GamesCreated (){
 
              </div>
             )}
-
-
-            
         </div>
     )
 }
