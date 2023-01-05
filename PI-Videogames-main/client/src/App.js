@@ -8,7 +8,7 @@ import Nav from './components/Nav/Nav';
 import Creategame from './components/Creategame/Creategame';
 import Favourites from './components/Favourites/Favourites';
 import EditGame from './components/EditGame/EditGame'
-import GamesCreated from './components/GamesCreated/GamesCreated';
+
 import axios from 'axios'
 axios.defaults.baseURL ='http://localhost:3001/';
 function App() {
@@ -23,7 +23,7 @@ function App() {
       <Route exact path='/Favourites' component={Favourites}/>
       <Route path='/details' component={Game}/>
       <Route exact path='/creategame' component={Creategame}/>
-      <Route exact path='/gamescreated' component={GamesCreated}/>
+     
       <Route  path='/editgame' component={EditGame}/>
      </div>
    
