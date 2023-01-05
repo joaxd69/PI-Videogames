@@ -25,7 +25,7 @@ function App() {
       <Route exact path='/Favourites' component={Favourites}/>
       <Route path='/details' component={Game}/>
       <Route exact path='/creategame' component={Creategame}/>
-      <Route exact path='/gamescreated' component = {GamesCreated}/>
+      <Route exact path='/gamescreated' component ={GamesCreated}/>
       <Route  path='/editgame' component={EditGame}/>
      </div>
    
