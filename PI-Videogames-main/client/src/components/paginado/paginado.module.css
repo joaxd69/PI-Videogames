@@ -32,3 +32,8 @@ li{
   background-color: rgba(0, 0, 0, 0.575);
    display:contents;
 }
+@media(max-width:412px){
+  .currentpage{
+    display: inline;
+  }
+}

@@ -56,3 +56,18 @@ top:-10px;
 
     }
 }
+
+@media(max-width:412px){
+ 
+ 
+  .button{
+    display: inline-block;
+    font-size: 16.1px;
+    height: 35px;
+
+  }
+  .hometitle{
+    top: 4px;
+    background-color: black;
+  }
+}

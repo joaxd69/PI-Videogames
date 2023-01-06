@@ -13,8 +13,8 @@ export default function Nav(){
       <div className={style.Nav}>
    
          <h2 className={style.hometitle}>VIDEOGAMES</h2> 
-         
-         <Link to ='/home'>
+          <div className={style.buttoncontains}>
+            <Link to ='/home'>
           <button className={style.button}>Home</button>
          </Link>   
          <Link to ='/Favourites'>
@@ -26,6 +26,8 @@ export default function Nav(){
         <Link to='/gamescreated'>
           <button className={style.button}>Games created</button>
         </Link>
+          </div>
+         
       </div>
     )
 } 

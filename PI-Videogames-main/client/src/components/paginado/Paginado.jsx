@@ -19,9 +19,9 @@ export default function Paginado ({allVideogame,gamesxpag,paginado,prev,next,cur
              </li> 
             )}
             <li><button className={style.button} value={pagenumber.length} onClick={next} >next</button></li>
-         <span className= {style.currentpage}> You are in page :{currentpage}</span>
         </ul>
-              
+        <span className= {style.currentpage}> You are in page :{currentpage}</span>
+
      </nav>
     </div>
       
