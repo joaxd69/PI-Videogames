@@ -10,7 +10,7 @@ import Favourites from './components/Favourites/Favourites';
 import GamesCreated from './components/GamesCreated/GamesCreated';
 import EditGame from './components/EditGame/EditGame'
 import axios from 'axios'
-axios.defaults.baseURL ='http://localhost:3001/';
+axios.defaults.baseURL ='https://pi-videogames-production-1f67.up.railway.app/';
 function App() {
   return (
   <BrowserRouter>
