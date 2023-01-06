@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import { DeleteGamesCreated } from "../../Redux/actions"
 import Videogames from "../Videogames/Videogames"
-import style from '../GamesCreated/GamesCreated.module.css'
+import style from './GamesCreated.module.css'
 import { Link } from "react-router-dom"
 export default function GamesCreated (){
 

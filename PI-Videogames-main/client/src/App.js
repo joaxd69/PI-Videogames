@@ -7,7 +7,7 @@ import Results from './components/search results/Results';
 import Nav from './components/Nav/Nav';
 import Creategame from './components/Creategame/Creategame';
 import Favourites from './components/Favourites/Favourites';
-// import GamesCreated from './components/GamesCreated/GamesCreated';
+import GamesCreated from './components/Created/Created';
 import EditGame from './components/EditGame/EditGame'
 import axios from 'axios'
 axios.defaults.baseURL ='https://pi-videogames-production-1f67.up.railway.app/';
@@ -25,7 +25,7 @@ function App() {
       <Route exact path='/Favourites' component={Favourites}/>
       <Route path='/details' component={Game}/>
       <Route exact path='/creategame' component={Creategame}/>
-      {/* <Route exact path='/gamescreated' component = {GamesCreated}/> */}
+      <Route exact path='/gamescreated' component = {GamesCreated}/>
       <Route  path='/editgame' component={EditGame}/>
      </div>
    
