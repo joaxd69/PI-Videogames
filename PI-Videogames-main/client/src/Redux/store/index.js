@@ -9,8 +9,8 @@ thunk es un middleware, un thunk es una funcion que envuelve otra funcion para r
 ciertas condiciones*/
 const store = createStore(reducer,composeWithDevTools(),applyMiddleware(thunk))///creamos la store 
 
-store.subscribe(()=>{///esto es para ver el stado de nuestra store ,cada vez que haya un estado nuevo veremos la info
-    console.log(store.getState())
-})
+// store.subscribe(()=>{///esto es para ver el stado de nuestra store ,cada vez que haya un estado nuevo veremos la info
+//     console.log(store.getState())
+// })
 
 export default store

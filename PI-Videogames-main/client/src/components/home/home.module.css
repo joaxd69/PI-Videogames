@@ -74,15 +74,9 @@ margin-top: 10px;
 }
 @media(max-width:412px){
     .bottomsspancontains{
-        
+        background-color: aliceblue;
         display: inline-block;
         margin-top: 30px;
     }
-    .cards{
-
-        width: auto;
-        margin-top:20px
-        
-        }
     
 }

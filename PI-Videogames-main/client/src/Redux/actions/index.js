@@ -134,7 +134,7 @@ export const DeleteGamesCreated=(id)=>{
 export const EditGame=(id,game)=>{
   return async(dispatch)=>{
     const urlput= await axios.put(`/videogames/${id}`,game)
-    console.log(urlput.headers)
+
     return dispatch({
       type:UPDATE_GAME,
       payload:{id,game}

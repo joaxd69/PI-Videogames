@@ -13,7 +13,7 @@ export default function Favourites (){
         <div>
             <h1 className={style.text}>Favourites</h1>    
     
-            <div className={style.Cardsconteiner}>
+            <div className={favourites.length ?style.Cardsconteiner :''}>
                 {favourites.length?favourites.map((i,key)=>
                   <div key={key}  className={style.Favouritecard}>
                     <button value={i.name} onClick={handleDelete} className={style.delete}>X</button>
@@ -21,7 +21,7 @@ export default function Favourites (){
                     <h3 className={style.text}>{i.name}</h3>
                     </Link>
                     <img alt="img" src={i.image} width={100} height={100}/>
-                  </div>):<></>}
+                  </div>):<h1>Add cards in <Link to='/home'> Home </Link></h1>}
             </div>
 
             <span className={style.text}>you can delete all :</span>

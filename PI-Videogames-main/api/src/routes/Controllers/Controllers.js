@@ -2,7 +2,7 @@ const axios = require('axios')
 const { Videogame,Genres}= require('../../db.js')
 require('dotenv').config()
 const {
-  DB_USER, DB_PASSWORD, DB_HOST,APY_KEY
+APY_KEY
 } = process.env;
 
 const videogamesloader= async ()=>{

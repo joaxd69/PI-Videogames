@@ -126,13 +126,13 @@ switch (action.type) {
    case DELETE_GAME_CREATED:
       const games= state.games_created
       const deletecreated = games.filter(i=>i.id!==action.payload)
-      console.log(deletecreated);
+     
     return{
       ...state,
       games_created:deletecreated
     } 
    case UPDATE_GAME:
-    console.log(action.payload)
+
     return{
       ...state
     }

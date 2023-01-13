@@ -135,13 +135,13 @@ export default function Creategame({estado,defaultname,putdispatch,id}){
                {errors.name&&<span className={style.errors}>{errors.name}</span>}
 
                {state==='Create'?
-               <input className={style.inputs} name='name'  type="text" value={inputs.name} onChange={handleChange} />:  
+               <input className={style.inputs} name='name' type="text" value={inputs.name} onChange={handleChange} />:  
                <input className={style.inputs} name='name'  type="text" value={inputs.name} placeholder='press click here before complete all'
                 onClick={()=>inputs.name=defaultname}/>
                }
              
 
-              <label className={style.nombres}>* Released:</label>
+              <label  className={style.nombres}>* Released:</label>
                {errors.released&&<span className={style.errors}>{errors.released}</span>} 
               <input placeholder='year-month-day, ex:2005-12-30' className={style.inputs} name='released' type="text"
                value={inputs.released} onChange={handleChange}/>

@@ -7,9 +7,10 @@ import style from '../home/home.module.css'
 import SortFilters from "../Sort filters/SortFIlters";
 import Loader from "../loader/loader";
 import Searchcomponent from "../searchcomponent/Searchcomponent";
+import { Link } from "react-router-dom";
 export default function Home (){
 
-  const dispatch =useDispatch()///para despachar acciones 
+  const dispatch =useDispatch()
   
     useEffect(()=>{                                
         dispatch(getvideogames())     
@@ -32,18 +33,16 @@ export default function Home (){
     const prev=()=> actualPage>1? setActualpage(actualPage-1):'';
     const next=(e)=> actualPage<e.target.value?setActualpage(actualPage+ 1):alert('No more page')
     
-    const setGamesperpage=(e)=>setgamesxpage(e.target.value)
-    const [visibility,setVisibility]=useState(true)
-    useEffect(()=>{
-      setTimeout(()=>{
-        setVisibility(false)
-      },15000)
-    },[])
+    const setGamesperpage=(e)=>{setgamesxpage(e.target.value);setActualpage(1)}
+    const [games,setgames]=useState(false)
+   
   return (
         <div className={style.Home}>  
              <div className={style.Paginate}>
               <section className={style.searchbar}>
-                <Searchcomponent/>
+                <Searchcomponent
+                setPage={setActualpage}
+                nogames={setgames}/>
               </section>
               
               <section className={style.paginatecontain}>
@@ -83,7 +82,8 @@ export default function Home (){
              <button onClick={setGamesperpage} className={style.buttons} value={25}>25</button>
              </div>  
             <div className={style.cards}>
-                {juegosactuales.length?juegosactuales.map((i,index)=>
+                {juegosactuales.length?
+                juegosactuales.map((i,index)=>
                 <Videogames
                 key={index}
                 name={i.name}
@@ -92,12 +92,10 @@ export default function Home (){
                 platforms={i.platforms.join()}
                 genres={i.genres.join()}
                 />
-                )
-                : visibility?<Loader/>:<h1>No games, you can create about this</h1>
-                } {/* inicialmente nuestra condicion dara false ya que en allvidegame
-                                                                no hay nada entonces mostrar un boton que hace el dispatch y muestra los resultados */}
+                ):games? <h1>No games you can <Link to = 'creategame'> create</Link> </h1> :<Loader/>    
+                } 
            
-          
+       
             </div>  
             {juegosactuales.length?<Paginado 
                 gamesxpag={gamesxpag}//20
