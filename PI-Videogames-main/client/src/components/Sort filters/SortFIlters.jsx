@@ -16,7 +16,7 @@ export default function SortFilters({Ascendente,Descendente,handleChangeorderfil
         
           <div className={style.Rating}>
             <span className={style.orden}>Order by rating</span>
-            <select className={style.selects}  onClick={handleChangeorderfilter} >
+            <select className={style.selects}  onChange={handleChangeorderfilter} >
                     <option value="null"> Ratings</option>
                     <option value='default'>Default</option>
                     <option value={Ascendente} >Ascendente</option>
@@ -26,7 +26,7 @@ export default function SortFilters({Ascendente,Descendente,handleChangeorderfil
 
          <div className={style.Nameorder}>
           <span className={style.orden}>Order by name</span>
-           <select className={style.selects} name="alpnuh" onClick={handleChangeorderfilter}>
+           <select className={style.selects} name="alpnuh" onChange={handleChangeorderfilter}>
               <option value="null">names</option>
               <option value='default' >Default</option>
               <option value={A_Z}>A-Z</option>
@@ -37,7 +37,7 @@ export default function SortFilters({Ascendente,Descendente,handleChangeorderfil
         <div className={style.Genres}> 
 
            <span className={style.orden}>Filter by genres</span>
-           <select className={style.selects} onClick={handlefiltebygenres}>
+           <select className={style.selects} onChange={handlefiltebygenres}>
             <option value="Genres">Genres</option>
             <option value='null'>All genres</option>
             {generos&&generos.map((i,key)=>
