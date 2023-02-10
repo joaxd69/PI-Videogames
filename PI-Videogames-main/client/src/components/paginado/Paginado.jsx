@@ -15,13 +15,14 @@ export default function Paginado ({allVideogame,gamesxpag,paginado,prev,next,cur
              <li><button className={style.button} onClick={prev}>prev</button></li>
             {pagenumber&&pagenumber.map((number,index)=>
              <li key={index}> 
-              < button className={style.button}onClick={()=>paginado(number)}>{number}</button>     
+              < button className={style.button}
+               style={number===currentpage?{color:'white'}:{color:'rgb(247, 0, 164)'}}
+               onClick={()=>paginado(number)}>{number}
+               </button>     
              </li> 
             )}
             <li><button className={style.button} value={pagenumber.length} onClick={next} >next</button></li>
         </ul>
-        <span className= {style.currentpage}> You are in page :{currentpage}</span>
-
      </nav>
     </div>
       

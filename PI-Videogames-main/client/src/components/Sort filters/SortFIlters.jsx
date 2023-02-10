@@ -1,5 +1,5 @@
 import style from  '../Sort filters/SortFilter.module.css'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getGenres } from '../../Redux/actions'
 
@@ -10,7 +10,9 @@ export default function SortFilters({Ascendente,Descendente,handleChangeorderfil
       dispatch(getGenres())
      },[dispatch])
      const generos = useSelector(state=>state.videogame_genres)
-   
+   const [color,setColor]=useState('white')
+   const violet = {color:'rgb(247, 0, 164)'}
+   const white = {color:'white'}
     return (
     <div className= {style.contain}>
         
@@ -47,8 +49,10 @@ export default function SortFilters({Ascendente,Descendente,handleChangeorderfil
 
         </div>
         <div className={style.buttonss}>
-          <button className={style.buttons} onClick={gamescreated} name={creados}>Mostrar creados</button>
-          <button className={style.buttons} onClick={gamescreated}name={todos}>Todos</button>
+          <button className={style.buttons} onClick={gamescreated} onClickCapture={()=>setColor(false)}
+            name={creados} style={color?violet:white} >Mostrar creados</button>
+          <button className={style.buttons} onClick={gamescreated} onClickCapture={()=>setColor(true)}
+           style={!color?violet:white} name={todos}>Todos</button>
        </div>
 
     </div>

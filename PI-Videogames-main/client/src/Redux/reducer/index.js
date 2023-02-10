@@ -60,7 +60,7 @@ switch (action.type) {
    case LOCAL_SEARCH:
     const gaaames= state.all_videogames
   
-    const local_games= gaaames.filter(i=>i.name.toLowerCase().includes(action.payload))///hace una busqueda local sobre los juegos del paginado
+    const local_games= gaaames.filter(i=>i.name.toLowerCase().includes(action.payload.toLowerCase()))///hace una busqueda local sobre los juegos del paginado
    return{
      ...state,
      videogames:local_games

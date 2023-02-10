@@ -58,7 +58,7 @@ EditGamesCreated,
 
   server.get ( "/videogames/:id",async (req, res) => {
     const { id } = req.params;
-
+  
     // si el id es menor a 10, es porq pertenece a la api
     if (id.length < 10 ) {
       try {

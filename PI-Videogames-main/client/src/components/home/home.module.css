@@ -64,19 +64,36 @@ margin-top: 10px;
   .buttons:active{
     transform: translate(6px);
   }
+  .message{
+    color: white;
+    font-size: 50px;
+  }
 @media(max-width:767px){
-
+    .Paginate{
+        margin-top: 50px;
+    }
     .cards{
         background-color: rgba(0, 0, 0, 0.562);
     width: auto;
-    margin-top: 140px;
+    margin-top: 0px;
     }
+    .message{
+        color: rgb(111, 255, 255);
+        font-size: 30px;
+        padding-bottom:100px ;
+        font-style: italic;
+      }
 }
 @media(max-width:412px){
     .bottomsspancontains{
         background-color: aliceblue;
         display: inline-block;
         margin-top: 30px;
+    }
+    .cards{
+
+    width: auto;
+    margin-top: 20px;
     }
     
 }

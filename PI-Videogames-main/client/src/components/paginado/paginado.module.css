@@ -3,6 +3,7 @@
   display: flex;
  justify-content:center;
  list-style: none;
+flex-wrap: wrap;
 }
 li{
  margin-right: 3px ; 
@@ -24,6 +25,9 @@ li{
 .button:hover{
   left: -10%;
   color: antiquewhite;
+}
+.button:active{
+  color: rgb(255, 243, 240);
 }
 .currentpage{
   font-style: italic;

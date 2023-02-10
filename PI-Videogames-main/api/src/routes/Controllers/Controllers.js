@@ -77,6 +77,7 @@ const getVideoGameId = async (id) => {
       `https://api.rawg.io/api/games/${id}?key=${APY_KEY}`
     )
     const infoApi = {
+      id:videogameId.data.id,
       image: videogameId.data.background_image,
       name: videogameId.data.name,
       description: videogameId.data.description_raw,

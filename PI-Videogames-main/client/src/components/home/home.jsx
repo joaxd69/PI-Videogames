@@ -27,7 +27,7 @@ export default function Home (){
       setActualpage(pagenumber) 
     }
     
-    const gamescreated =(e)=> dispatch(getgamescreated(e.target.name)) 
+    const gamescreated =(e)=>{ dispatch(getgamescreated(e.target.name));setActualpage(1)}
     const handleChangeorderfilter=(e)=>dispatch(getgamesordened(e.target.value))
     const handlefiltebygenres=(e)=>{dispatch(getgamesbygenres(e.target.value));setActualpage(1)}
     const prev=()=> actualPage>1? setActualpage(actualPage-1):'';
@@ -92,7 +92,8 @@ export default function Home (){
                 platforms={i.platforms.join()}
                 genres={i.genres.join()}
                 />
-                ):games? <h1>No games you can <Link to = 'creategame'> create</Link> </h1> :<Loader/>    
+                ):games? <h1 className={style.message}>No games,but you can
+                 <Link to = 'creategame'> create</Link> </h1> :<Loader/>    
                 } 
            
        

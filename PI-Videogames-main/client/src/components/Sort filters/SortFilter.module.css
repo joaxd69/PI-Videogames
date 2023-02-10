@@ -80,4 +80,11 @@
   .buttons:active{
     transform: translate(6px);
   }
+  @media(max-width:375px){
+  .buttons{
+    font-size: 14px;
+    height: 33px;
+    width: fit-content;
+  }
+}
 

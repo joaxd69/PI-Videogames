@@ -22,7 +22,7 @@ export default function Game(){
     const handlefavourites = (e)=>{e.preventDefault();dispatch(getfavourites(gamename))}
     
 
-
+   console.log(gamename)
  return(
       <div className={style.Game}>      
         <h1 className={style.info}>{gamename.name}</h1>

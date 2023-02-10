@@ -10,7 +10,7 @@ import Favourites from './components/Favourites/Favourites';
 import GamesCreated from './components/Created/Created';
 import EditGame from './components/EditGame/EditGame'
 import axios from 'axios'
-axios.defaults.baseURL ='http://localhost:3001/';//// cambiar a ruta del back end
+axios.defaults.baseURL ='http://localhost:3002/';//// cambiar a ruta del back end
 function App() {
   return (
   <BrowserRouter>
